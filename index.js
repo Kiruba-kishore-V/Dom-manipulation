@@ -1,5 +1,11 @@
-const taskContainer = document.querySelector(".task__container");
-console.log(taskContainer);
+//Parent element to store cards
+
+  const taskContainer = document.querySelector(".task__container");
+
+
+//Global store
+  const globalStore = [];
+
 
 const newCard =({
    id,
@@ -27,6 +33,31 @@ const newCard =({
         </div>
             </div>`;
 
+    
+   const loadInitialTaskcards = () => {
+     
+    //access local storage
+
+      const getInitialData = localStorage.getItem("slides");
+      if (!getInitialData) return;
+
+
+    // convert stringified object to object
+
+    const { cards } =JSON.parse(getInitialData);
+    
+    //map around the array to generate HTML card and inject it to DOM
+    cards.map((card) => {
+      const createNewCard = newCard(card);
+      taskContainer.insertAdjacentHTML("beforeend", createNewCard);
+      globalStore.push(card);
+
+
+    });
+
+
+   };
+
 
 
 
@@ -42,9 +73,34 @@ const saveChanges= () => {
 
    };
 
+   //HTML code
 
-const createNewCard = newCard(taskData);
+    const createNewCard = newCard(taskData);
+    taskContainer.insertAdjacentHTML("beforeend", createNewCard);
+    globalStore.push(taskData);
+    console.log(globalStore);
 
-taskContainer.insertAdjacentHTML("beforeend", createNewCard);
+//add to local storage
+    localStorage.setItem("slides", JSON.stringify( { cards: globalStore }));
+
+
+    //Application programming interface(API)
+    //localstorage->interface->programming
 
 };
+
+
+
+
+
+
+//Tobesolved
+
+
+
+
+
+
+
+
+

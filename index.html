@@ -21,7 +21,7 @@
 <title>Slide</title>
 </head>
 
-<body>
+<body onload="loadInitialTaskcards()">
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -55,7 +55,7 @@
         </div>
         <div class="modal-footer d-flex justify-content-start">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="saveChanges()">Save</button>
+          <button type="button" class="btn btn-primary" onclick="saveChanges()" data-bs-dismiss="modal">Save</button>
         </div>
       </div>
     </div>
